@@ -633,48 +633,33 @@ function getDayFromDate(dateStr) {
     if (!dateStr)
       return '';
 
-    const cleanDate =
-      String(dateStr)
-      .split(' ')[0];
+    const dt =
+      new Date(dateStr);
 
-    const parts =
-      cleanDate.split('/');
-
-    if (parts.length < 3)
+    if (isNaN(dt))
       return '';
-
-    const dt = new Date(
-      parts[2],
-      parts[1]-1,
-      parts[0]
-    );
 
     return HARI_ID[
       dt.getDay()
     ] || '';
 }
 
-
 function getMonthYearFromDate(dateStr) {
 
     if (!dateStr)
       return null;
 
-    const cleanDate =
-      String(dateStr)
-      .split(' ')[0];
+    const dt =
+      new Date(dateStr);
 
-    const parts =
-      cleanDate.split('/');
-
-    if (parts.length < 3)
+    if (isNaN(dt))
       return null;
 
     return {
 
-        d: parseInt(parts[0]),
-        m: parseInt(parts[1]) - 1,
-        y: parseInt(parts[2])
+        d: dt.getDate(),
+        m: dt.getMonth(),
+        y: dt.getFullYear()
 
     };
 }
