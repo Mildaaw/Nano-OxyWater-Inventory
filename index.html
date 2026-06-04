@@ -423,6 +423,83 @@
             </div>
         </div>
     </section>
+    
+    <section id="pg-pengaturan" class="page">
+        <div class="ph">
+            <div>
+                <div class="ph-title">Pengaturan Sistem</div>
+                <div class="ph-sub">Konfigurasi preferensi aplikasi, tampilan, dan keamanan</div>
+            </div>
+        </div>
+
+        <div class="settings-grid">
+            <div class="settings-card">
+                <div class="settings-title">
+                    <div class="panel-icon" style="background:var(--blue-xl);color:var(--blue);"><i data-lucide="database" style="width:12px;height:12px;"></i></div> 
+                    Koneksi Database
+                </div>
+                <div style="margin-bottom:12px;">
+                    <label style="font-size:12px; font-weight:600; color:var(--muted); display:block; margin-bottom:4px;">ID Google Spreadsheet Aktif</label>
+                    <input type="text" value="19yyzZsOnjZ8Pp1Np33P2f00FiwjfusZOhrLDl4BMRBo" disabled style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--muted); font-size:13px; font-family:inherit;">
+                </div>
+                <div style="margin-bottom:12px;">
+                    <label style="font-size:12px; font-weight:600; color:var(--muted); display:block; margin-bottom:4px;">Status API</label>
+                    <div style="display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:20px; background:#ecfdf5; color:#059669; font-size:11px; font-weight:700; border:1px solid #a7f3d0;">
+                        <span style="width:6px; height:6px; border-radius:50%; background:#059669; display:block;"></span> Terhubung
+                    </div>
+                </div>
+                <button class="btn-action" style="width:100%; justify-content:center; margin-top:8px;" onclick="loadSemuaData()">
+                    <i data-lucide="refresh-cw" style="width:14px;height:14px;"></i> Sinkronisasi Ulang Data
+                </button>
+            </div>
+
+            <div class="settings-card">
+                <div class="settings-title">
+                    <div class="panel-icon" style="background:var(--teal-xl);color:var(--teal);"><i data-lucide="palette" style="width:12px;height:12px;"></i></div> 
+                    Preferensi Tampilan
+                </div>
+                
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--border);">
+                    <div>
+                        <div style="font-size:13px; font-weight:600; color:var(--text);">Mode Gelap (Dark Mode)</div>
+                        <div style="font-size:11px; color:var(--muted);">Ubah tema layar ke warna gelap</div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="theme-toggle" onchange="document.body.classList.toggle('dark-theme'); lucide.createIcons();">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:12px 0;">
+                    <div>
+                        <div style="font-size:13px; font-weight:600; color:var(--text);">Auto-Refresh Data</div>
+                        <div style="font-size:11px; color:var(--muted);">Tarik data otomatis setiap 5 detik</div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked onchange="this.checked ? setupAutoRefresh() : clearInterval(refreshInterval)">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <div class="settings-title">
+                    <div class="panel-icon" style="background:var(--rose-xl);color:var(--rose);"><i data-lucide="shield" style="width:12px;height:12px;"></i></div> 
+                    Keamanan Akses
+                </div>
+                <div style="margin-bottom:12px;">
+                    <label style="font-size:12px; font-weight:600; color:var(--muted); display:block; margin-bottom:4px;">PIN Admin Saat Ini: <span style="color:var(--text);">nano123</span></label>
+                    <div style="font-size:11px; color:var(--muted); margin-bottom:12px; line-height:1.4;">
+                        *(Catatan: Saat ini PIN dikunci langsung dari skrip HTML. Untuk merubahnya secara permanen, harap ubah di kode sumber).*
+                    </div>
+                    <button class="btn-outline" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px; padding:10px;" onclick="logoutAdmin()">
+                        <i data-lucide="log-out" style="width:14px; height:14px; color:var(--rose);"></i> Akhiri Sesi Admin (Logout)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <footer style="
         margin-top:20px;
         padding:12px;
