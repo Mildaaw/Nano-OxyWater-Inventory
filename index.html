@@ -857,7 +857,50 @@ function renderLaporan() {
 }
 
 function downloadPDF() {
-    alert("Fitur download PDF sedang disiapkan!");
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text("Laporan Bulanan Nano OxyWater", 14, 15);
+
+    const bulan = document.getElementById('bulanPilih').options[
+        document.getElementById('bulanPilih').selectedIndex
+    ].text;
+
+    const tahun = document.getElementById('tahunPilih').value;
+
+    doc.setFontSize(11);
+    doc.text(`Periode : ${bulan} ${tahun}`, 14, 25);
+
+    const rows = [];
+
+    document.querySelectorAll("#laporanTable tbody tr").forEach(tr => {
+        const cols = tr.querySelectorAll("td");
+
+        if(cols.length >= 5){
+            rows.push([
+                cols[0].innerText,
+                cols[1].innerText,
+                cols[2].innerText,
+                cols[3].innerText,
+                cols[4].innerText
+            ]);
+        }
+    });
+
+    doc.autoTable({
+        startY: 35,
+        head: [[
+            "Invoice / Barang",
+            "Tanggal",
+            "Jenis",
+            "Jumlah",
+            "Nilai"
+        ]],
+        body: rows
+    });
+
+    doc.save(`Laporan_${bulan}_${tahun}.pdf`);
 }
 
 function renderAll() {
